@@ -7,7 +7,7 @@ export const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 //   }
 // }
 
-const makeActionCreator = function (actionType) {
+export const makeActionCreator = function (actionType) {
   return function (payload) {
     return {
       type: actionType,

@@ -1,27 +1,24 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import {connect} from 'react-redux'
 
 import Product from "../components/Product";
 
-
 class ProductList extends Component {
-     constructor(props){
-          super(props)
-     }
-    render() {
-        let  productArray = this.props.product.map((product) => {
-             return (
-                  <Product key={product.listing_id} product={product} />
-             )
-        })
 
+    render() {
+         console.log(this.props);
+         let listings = this.props.products.map((product, index) => {
+              return (
+                   <Product key={product.listing_id} product={product} />
+              )
+         })
+     //    const {products} = this.props;
         // Create a dynamically populated list of `<Product />` components
         // Each `<Product />` component should have a single object from the `products` state property (array)
         // applied to the component as a `product` property
         return (
             <ul className="ProductList">
-                 {productArray}
-                 console.log({productArray});
+                 {listings}
             </ul>
         );
     }
@@ -34,25 +31,27 @@ class ProductList extends Component {
 // - `all` or the default
 const mapStateToProps = function(state) {
      console.log(state);
-
     // complete the `if else` statement including conditions and `products` value
-    if (state.currentState === 'underTwenty') {
-         let filterProduct = state.product.filter((product) =>{
-              return parseInt(product.price) <= 20;
+    if (state.currentState === "underTwenty") {
+         let product = state.products.filter((product)=> {
+              // eslint-disable-next-line
+              return parseInt(product.price) < 20;
          })
          return {
-              products: filterProduct
+              products: product
          }
-
-    } else if (state.currentState === 'overTwenty') {
-         let filterProduct = state.product.filter((product) => {
-              return parseInt(product.price) > 20;
+    } else if (state.currentState === "overTwenty"){
+         let product = state.products.filter((product) => {
+              // eslint-disable-next-line
+              return parseInt(product.price) >=20;
          })
          return {
-              products: filterProduct
+              products: product
          }
     } else {
-         return state.product
+         return {
+         products: state.products
+          }
     }
 }
 

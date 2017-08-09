@@ -6,8 +6,8 @@ import products from './data/products';
 // Make sure the state object contains the `products` array imported in this file
 // The state will also require a property for the current state of filterable data
 const initialState = {
-     products: products,
-     currentState: ''
+     currentState: '',
+     products: products
 }
 
 // Finish writing the reducer for the `FILTER_PRODUCTS` action
@@ -18,18 +18,12 @@ const reducer = function(state = initialState, action) {
     // Be sure not to mutate state
     // Use the `update` operator provided by `immutability-helper`
     // to update the the state property describing current state of
-    switch(action.type) {
-    case 'FILTER_PRODUCTS':
-    return update(state, {currentState: {$set: action.payload }})
-     }
-     return state;
-
-    // // provided by the `action.payload`
-    // if (action.type === FILTER_PRODUCTS) {
-    //      return update(state, {currentState: {$set: action.payload }});
-    // } else {
-    //      return state;
-    // }
+ 
+     if (action.type === FILTER_PRODUCTS) {
+         return update(state, {currentState: {$set: action.payload }});
+    } else {
+         return state;
+    }
 }
 
 export default reducer;
