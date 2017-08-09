@@ -12,7 +12,7 @@ class ProductList extends Component {
                    <Product key={product.listing_id} product={product} />
               )
          })
-     //    const {products} = this.props;
+        // const {products} = this.props;
         // Create a dynamically populated list of `<Product />` components
         // Each `<Product />` component should have a single object from the `products` state property (array)
         // applied to the component as a `product` property
